@@ -1,0 +1,25 @@
+#!/bin/sh
+PARENT_DIR="$(dirname $(pwd))"
+if [ -d "$PARENT_DIR/brower-extension" ];
+then
+    echo "WARNING: Please build the latest brower-extension first"
+
+    mkdir -p extension
+    mkdir -p dist
+    cp -r ../brower-extension/build ./extension/;
+    echo "Coppied /build/*";
+    cp -r ../brower-extension/assert ./extension/;
+    echo "Coppied /assert/*";
+    cp -r ../brower-extension/manifest.json ./extension/;
+    echo "Coppied /manifest.json";
+
+    node ./_scripts/update_manifest.js;
+    echo "Updated manifest.json";
+
+    cd extension;
+    zip -r ../dist/voz-living.xpi *;
+    echo "Compiled dist/voz-living.xpi";
+    echo "Done! Please see https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Packaging_and_installation for more information how to load the extension to firefox";
+else
+    echo "brower-extension need to be same level as firefox-extenions";
+fi
