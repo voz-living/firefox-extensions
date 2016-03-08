@@ -2,3 +2,5 @@
 extension/
 
 dist/
+
+node_modules/

@@ -5,7 +5,9 @@ then
     echo "WARNING: Please build the latest brower-extension first"
 
     mkdir -p extension
+    rm -r ./extension/*
     mkdir -p dist
+    rm -r ./dist/*
     cp -r ../brower-extension/build ./extension/;
     echo "Coppied /build/*";
     cp -r ../brower-extension/assert ./extension/;
@@ -13,6 +15,7 @@ then
     cp -r ../brower-extension/manifest.json ./extension/;
     echo "Coppied /manifest.json";
 
+    npm install;
     node ./_scripts/update_manifest.js;
     echo "Updated manifest.json";
 
