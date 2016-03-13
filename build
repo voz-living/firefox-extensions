@@ -20,6 +20,7 @@ then
     echo "Updated manifest.json";
 
     cd extension;
+    find . \( -name '.DS_Store' -or -name '._*' \) -delete
     zip -r ../dist/voz-living.xpi *;
     echo "Compiled dist/voz-living.xpi";
     echo "Done! Please see https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Packaging_and_installation for more information how to load the extension to firefox";
